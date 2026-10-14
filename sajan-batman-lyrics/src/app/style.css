@@ -1,0 +1,522 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background: #06080e;
+    color: #f7f2f4;
+    font-family: "Space Grotesk", sans-serif;
+}
+.scene {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #06080e center/cover no-repeat;
+    padding: 28px clamp(18px, 5vw, 70px) 22px;
+}
+.scene:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    display: none;
+}
+.scene:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+            #070910aa,
+            transparent 35%,
+            transparent 65%,
+            #070910aa
+        ),
+        linear-gradient(0deg, #06080e 2%, transparent 45%);
+}
+header,
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    font:
+        10px "DM Mono",
+        monospace;
+    letter-spacing: 2px;
+    color: #a4a0b2;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f5eff5;
+}
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 29px;
+    border: 1px solid #e64a61;
+    color: #f2b36d;
+    font-size: 19px;
+    font-weight: 700;
+    clip-path: polygon(50% 0, 90% 18%, 100% 65%, 50% 100%, 0 65%, 10% 18%);
+}
+.brand b {
+    color: #f2b36d;
+}
+.live {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.live i,
+.board-power i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff4b67;
+    box-shadow: 0 0 10px #ff3459;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+}
+.moon,
+.cloud,
+.city,
+.bat-mark {
+    display: none;
+}
+.moon {
+    position: absolute;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    top: 8%;
+    right: 12%;
+    background: radial-gradient(
+        circle at 36% 32%,
+        #fff7ff,
+        #b9a9d6 38%,
+        #675e83 66%,
+        #29263f 70%
+    );
+    opacity: 0.25;
+    box-shadow: 0 0 90px #b19dd544;
+}
+.cloud {
+    position: absolute;
+    height: 80px;
+    width: 55%;
+    border-radius: 50%;
+    filter: blur(32px);
+    background: #5c385f;
+    opacity: 0.18;
+}
+.cloud1 {
+    top: 25%;
+    left: -10%;
+}
+.cloud2 {
+    top: 42%;
+    right: -15%;
+    background: #a52b4a;
+}
+.bat-mark {
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    font-size: 90px;
+    color: #090b12;
+    opacity: 0.7;
+    transform: rotate(-12deg);
+    text-shadow: 0 0 20px #000;
+}
+.city {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 210px;
+    display: none;
+    align-items: flex-end;
+    justify-content: space-around;
+    opacity: 0.55;
+    z-index: -1;
+}
+.city i {
+    display: block;
+    background: linear-gradient(#111522, #080a10);
+    border-top: 1px solid #4c3a55;
+    position: relative;
+}
+.city i:before {
+    content: "";
+    position: absolute;
+    inset: 10px 5px;
+    background:
+        repeating-linear-gradient(90deg, #f15b6d 0 2px, transparent 2px 10px),
+        repeating-linear-gradient(0deg, #ffcc9a 0 2px, transparent 2px 13px);
+    opacity: 0.25;
+}
+.hero {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+}
+.eyebrow {
+    font:
+        10px "DM Mono",
+        monospace;
+    letter-spacing: 4px;
+    color: #f2b36d;
+}
+.hero h1 {
+    font-size: clamp(42px, 8vw, 83px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin: 15px 0 9px;
+    font-weight: 700;
+    text-shadow: 0 0 28px #ff4d7030;
+}
+.hero h1 em {
+    font-style: normal;
+    color: #f2b36d;
+}
+.sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #aaa4b9;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+}
+.sub svg {
+    color: #f2b36d;
+}
+.device {
+    position: relative;
+    width: min(100% - 32px, 460px);
+    margin: 0;
+    padding: 16px 19px 13px;
+    background: linear-gradient(135deg, #252b34, #10141b 42%, #20242d);
+    border: 1px solid #454a55;
+    border-radius: 13px;
+    box-shadow:
+        0 20px 55px #0009,
+        0 0 0 5px #0d1018,
+        0 0 0 6px #343744,
+        0 0 45px #ff385522;
+    text-align: left;
+}
+.screw {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #777, #252a34);
+    border: 1px solid #111;
+}
+.tl {
+    top: 7px;
+    left: 7px;
+}
+.tr {
+    top: 7px;
+    right: 7px;
+}
+.bl {
+    bottom: 7px;
+    left: 7px;
+}
+.br {
+    bottom: 7px;
+    right: 7px;
+}
+.board-top,
+.board-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font:
+        8px "DM Mono",
+        monospace;
+    letter-spacing: 1.5px;
+    color: #818a98;
+    padding: 0 3px 10px;
+}
+.board-power {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.oled {
+    min-height: 200px;
+    background: #05090d;
+    border: 2px solid #313843;
+    border-radius: 4px;
+    box-shadow:
+        inset 0 0 24px #000,
+        0 0 18px #ff315b0b;
+    padding: 15px 16px 12px;
+    color: #f2b36d;
+    position: relative;
+    overflow: hidden;
+}
+.oled:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, #fff0 0 3px, #ffffff04 4px 5px);
+}
+.oled-top,
+.oled-foot {
+    display: flex;
+    justify-content: space-between;
+    font:
+        8px "DM Mono",
+        monospace;
+    letter-spacing: 1.2px;
+    color: #f2b36d;
+}
+.wave {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin: 7px 0 8px;
+}
+.wave i {
+    display: block;
+    width: 3px;
+    border-radius: 5px;
+    background: #f2b36d;
+    box-shadow: 0 0 7px #ff335c;
+    animation: wave 0.8s ease-in-out infinite alternate;
+}
+.lyric {
+    font-size: clamp(19px, 4vw, 27px);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-align: center;
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 0 12px #f2b36d;
+    animation: enter 0.45s ease;
+}
+.cursor {
+    font-size: 0.7em;
+    margin-left: 4px;
+    animation: blink 0.8s steps(2) infinite;
+}
+.oled-foot {
+    margin-top: 12px;
+    color: #f2b36d;
+}
+.board-bottom {
+    padding: 10px 3px 0;
+    justify-content: flex-start;
+    gap: 14px;
+    padding-bottom: 0;
+}
+.leds {
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+.leds i {
+    height: 5px;
+    width: 5px;
+    border-radius: 50%;
+    background: #ff355c;
+    box-shadow: 0 0 8px #ff355c;
+}
+.leds i:nth-child(2) {
+    background: #f6b84b;
+    box-shadow: 0 0 8px #f6b84b;
+}
+.leds i:nth-child(3) {
+    background: #70e0bd;
+    box-shadow: 0 0 8px #70e0bd;
+}
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 22px auto 15px;
+}
+.controls button {
+    background: transparent;
+    color: #bcb6c6;
+    border: 0;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    padding: 9px;
+    transition: 0.2s;
+}
+.controls button:hover {
+    color: #f2b36d;
+    transform: scale(1.08);
+}
+.controls .play {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ff526e;
+    color: #140911;
+    box-shadow: 0 0 24px #ff526e45;
+}
+.progress {
+    height: 3px;
+    background: #ffffff19;
+    border-radius: 8px;
+    max-width: 360px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.progress span {
+    display: block;
+    height: 100%;
+    background: #ff6179;
+    box-shadow: 0 0 10px #ff526e;
+    transition: width 0.35s;
+}
+.meta {
+    display: flex;
+    justify-content: space-between;
+    max-width: 360px;
+    margin: 10px auto 0;
+    color: #787486;
+    font:
+        8px "DM Mono",
+        monospace;
+    letter-spacing: 1px;
+}
+.meta span:last-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.speed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 22px auto 0;
+    color: #8d899d;
+    font:
+        8px "DM Mono",
+        monospace;
+    letter-spacing: 1px;
+}
+.speed input {
+    width: 90px;
+    accent-color: #ff526e;
+}
+.speed span {
+    color: #f2b36d;
+    min-width: 65px;
+    text-align: left;
+}
+footer {
+    font-size: 8px;
+    letter-spacing: 1.3px;
+}
+footer b {
+    color: #f2b36d;
+}
+@keyframes pulse {
+    50% {
+        opacity: 0.4;
+        box-shadow: 0 0 2px #ff3459;
+    }
+}
+@keyframes wave {
+    to {
+        transform: scaleY(0.35);
+        opacity: 0.6;
+    }
+}
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+}
+@media (max-width: 560px) {
+    .scene {
+        padding: 20px 15px 18px;
+    }
+    .hero {
+        margin: 0;
+    }
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+    .device {
+        padding: 15px 13px 12px;
+    }
+    .oled {
+        min-height: 185px;
+        padding: 12px;
+    }
+    .bat-mark {
+        right: 4%;
+        top: 17%;
+        font-size: 58px;
+    }
+    .moon {
+        right: -20%;
+        top: 10%;
+        width: 200px;
+        height: 200px;
+    }
+    .live {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+    .eyebrow {
+        letter-spacing: 2px;
+    }
+    .meta {
+        font-size: 7px;
+    }
+    .speed {
+        gap: 8px;
+    }
+    footer {
+        font-size: 7px;
+        letter-spacing: 0.7px;
+    }
+}
